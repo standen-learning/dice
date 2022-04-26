@@ -14,6 +14,7 @@
 
 #imports
 import random
+from turtle import width
 
 #Global Constants
 #DICE_ART stores all of the ASCII art for the dice.
@@ -67,20 +68,26 @@ DIE_FACE_SEPARATOR = " "
 
 #Function: main
 #   Arguments: N/A
-#   Variables: number_dice_prompt, dice_roll
+#   Variables: number_dice_prompt, dice_roll, dice_face_diagram
 #   Return: N/A
-#   Calls: prompt_user, roll_dice
+#   Calls: prompt_user, roll_dice, generate_dice_faces
 #   Called By: N/A
 def main():
     #prompt user
     print("Welcome!!!")
     number_dice_prompt = prompt_user()
+
+    #if user enters q, prompt_user returns 0, which will end the loop
+    #and quit the program.
     while number_dice_prompt != 0:
+        #if promp_user enters an invalid character, it will return -1
+        #and run prompt_user again.
         if number_dice_prompt == -1:
             number_dice_prompt = prompt_user()
         else:
             dice_roll = roll_dice(number_dice_prompt)
-            print(dice_roll)
+            dice_face_diagram = generate_dice_faces(dice_roll)
+            print(f"\n{dice_face_diagram}")
             number_dice_prompt = prompt_user()
     print("Thanks for playing.  See you next time!!!")
     exit()
@@ -161,10 +168,21 @@ def get_dice_faces_rows(dice_faces):
 
 #Function: generate_dice_faces
 #   Arguments: dice_values
-#   Variables: 
+#   Variables: dice_faces, dice_faces_rows, width, diagram_header dice_faces_diagram
 #   Return: dice_faces_diagram - A string formatted for printing of each die's face.
 #   Calls: get_dice_faces, get_dice_faces_rows
 #   Called By: main
+def generate_dice_faces(dice_values):
+    dice_faces = get_dice_faces(dice_values)
+    dice_faces_rows = get_dice_faces_rows(dice_faces)
+
+    #Generate a header for Results
+    width = len(dice_faces_rows[0])
+    diagram_header = "RESULTS".center(width, "~")
+
+    #Generate diagram
+    dice_faces_diagram = "\n".join([diagram_header] + dice_faces_rows)
+    return dice_faces_diagram
 
 #Run main
 main()
