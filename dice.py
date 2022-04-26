@@ -69,6 +69,8 @@ DIE_FACE_SEPARATOR = " "
 #   Arguments: N/A
 #   Variables: number_dice_prompt, dice_roll
 #   Return: N/A
+#   Calls: prompt_user, roll_dice
+#   Called By: N/A
 def main():
     #prompt user
     print("Welcome!!!")
@@ -88,6 +90,8 @@ def main():
 #   Arguments: N/A
 #   Variables: VALIDATION, QUIT_VALIDATION, num_dice_input, format_num_dice_input
 #   Return: returns an integer value between 1 and 6
+#   Calls: N/A
+#   Called By: main
 def prompt_user():
     VALIDATION = ["1", "2", "3", "4", "5", "6"] #for validating input
     QUIT_VALIDATION = ["q", "Q"]
@@ -112,6 +116,8 @@ def prompt_user():
 #   Variables: roll_results, roll
 #   Return: roll_results - A list of random integers each between 
 #       1 and 6 for each dice.
+#   Calls: N/A
+#   Called By: main
 def roll_dice(number_of_dice):
     roll_results = []
     i = 0
@@ -127,11 +133,47 @@ def roll_dice(number_of_dice):
 #   Variables: dice_faces
 #   Return: dice_faces: a list that contains all of the 
 #       art for each dice.
+#   Calls: N/A
+#   Called By: generate_dice_faces
 def get_dice_faces(dice_values):
     dice_faces = []
     for value in dice_values:
         dice_faces.append(DICE_ART[value])
     return dice_faces
 
+#Function: get_dice_faces_rows
+#   Arguments: dice_faces
+#   Variables: dice_faces_rows, row_component, row_string
+#   Return: dice_faces_rows - A list with each row formatted for dice face.
+#   Calls: N/A
+#   Called By: generate_dice_faces
+def get_dice_faces_rows(dice_faces):
+    dice_faces_rows = []
+
+    for row_index in range(DIE_HEIGHT):
+        row_components = []
+        for die in dice_faces:
+            row_components.append(die[row_index])
+        row_string = DIE_FACE_SEPARATOR.join(row_components)
+        dice_faces_rows.append(row_string)
+
+    return dice_faces_rows
+
+#Function: generate_dice_faces
+#   Arguments: dice_values
+#   Variables: 
+#   Return: dice_faces_diagram - A string formatted for printing of each die's face.
+#   Calls: get_dice_faces, get_dice_faces_rows
+#   Called By: main
+
 #Run main
 main()
+
+#Function info template:
+
+#Function: f_ name
+#   Arguments: 
+#   Variables: 
+#   Return: 
+#   Calls: 
+#   Called By:
