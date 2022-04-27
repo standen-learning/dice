@@ -1,3 +1,20 @@
+#Class: Dice
+#Arguments: number_of_dice - integer
+#Methods: 
+#   generate_dice_faces - returns the final variable used to
+#               print the dice faces to the terminal.
+#   roll_dice - takes in number_of_dice variable and 
+#               generates a random int value between
+#               1 and 6 until number_of_dice is reached.
+#   get_dice_faces - takes in the _roll variable and returns
+#               a list of strings that represent a visual
+#               die face.
+#   get_dice_faces_rows - returns a formatted version of
+#               the variable returned from get_dice_faces
+#               that is usable for printing to the terminal.
+
+
+
 #imports
 import random
 
