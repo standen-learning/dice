@@ -30,15 +30,10 @@ def main():
     #if user enters q, prompt_user returns 0, which will end the loop
     #and quit the program.
     while number_dice_prompt != 0:
-        #if promp_user enters an invalid character, it will return -1
-        #and run prompt_user again.
-        if number_dice_prompt == -1:
-            number_dice_prompt = prompt_user()
-        else:
-            dice_roll = Dice(number_dice_prompt)
-            dice_face_diagram = dice_roll.generate_dice_faces()
-            print(f"\n{dice_face_diagram}")
-            number_dice_prompt = prompt_user()
+        dice_roll = Dice(number_dice_prompt)
+        dice_face_diagram = dice_roll.generate_dice_faces()
+        print(f"\n{dice_face_diagram}")
+        number_dice_prompt = prompt_user()
     print("Thanks for playing.  See you next time!!!")
     exit()
 
@@ -47,7 +42,7 @@ def main():
 #   Arguments: N/A
 #   Variables: VALIDATION, QUIT_VALIDATION, num_dice_input, format_num_dice_input
 #   Return: returns an integer value between 1 and 6
-#   Calls: N/A
+#   Calls: prompt_user() - recursive if variable is invalid.
 #   Called By: main
 def prompt_user():
     VALIDATION = ["1", "2", "3", "4", "5", "6"] #for validating input
@@ -65,7 +60,7 @@ def prompt_user():
         return 0
     else:
         print("Your input is invalid.  Please try again.")
-        return -1
+        return prompt_user()
 
 #Call main
 main()
